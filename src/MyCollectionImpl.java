@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class MyCollectionImpl implements Collection{
 
@@ -12,8 +11,6 @@ public class MyCollectionImpl implements Collection{
     }
     private int size;
     private String [] massConstruct;
-
-
 
     @Override
     public boolean add(int index, String value) throws Exception {
@@ -30,7 +27,6 @@ public class MyCollectionImpl implements Collection{
         incrSizeMassFilling();
             massConstruct[size] = value;
             size++;
-        System.out.println(Arrays.toString(massConstruct));
             return true;
     }
     @Override
@@ -73,9 +69,8 @@ public class MyCollectionImpl implements Collection{
     private void incrSizeMassFilling (){
         if(massConstruct.length<=size){
             String [] incrMass = new String[massConstruct.length+5];
-            for (int i = 0; i < massConstruct.length; i++) {incrMass[i] = massConstruct[i];}
+            System.arraycopy(massConstruct, 0, incrMass, 0, massConstruct.length);
             massConstruct = incrMass;
-            System.out.println("incrMass " + Arrays.toString(massConstruct));
         }
     }
     private void addByIndex(int index, String value){
@@ -85,8 +80,6 @@ public class MyCollectionImpl implements Collection{
         }
         massConstruct[index] = value;
         size++;
-        System.out.println("value " + value);
-        System.out.println("mass " + Arrays.toString(massConstruct));
     }
 
     private void deleteElement(int index) throws Exception {
@@ -95,7 +88,6 @@ public class MyCollectionImpl implements Collection{
             massConstruct[i] = massConstruct[i+1];
         }
         if (!(size<=0))size--;
-        System.out.println(Arrays.toString(massConstruct));
     }
     private void deleteElement(String value) throws Exception {
         boolean existElement = false;
@@ -107,8 +99,6 @@ public class MyCollectionImpl implements Collection{
             }
         }
         if (!existElement) throw new Exception("Sorry you cant delete this " + value + " element");
-        System.out.println("Delete element by val " + value);
-        System.out.println("Delete element from mass Arr after delete " + Arrays.toString(massConstruct));
     }
 
     private boolean containInCollection(String value){
@@ -135,7 +125,6 @@ public class MyCollectionImpl implements Collection{
     private boolean clearCollection(){
         massConstruct = new String[5];
         size = 0;
-        System.out.println(Arrays.toString(massConstruct));
         return true;
     }
 
